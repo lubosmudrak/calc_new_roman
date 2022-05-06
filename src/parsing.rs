@@ -1,3 +1,4 @@
+/// Get a valid user input and trim all unneeded invisible characters from it
 pub fn get_user_input() -> String 
 {
     let mut user_input = String::new();
@@ -8,4 +9,6 @@ pub fn get_user_input() -> String
 
     user_input_trimmed
 }
+
+/// Extract roman numbers from string and convert them into arabic
 pub fn parse_user_input(){}
