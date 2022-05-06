@@ -1,0 +1,18 @@
+[package]
+authors = ["Ľuboš Mudrák <lubosmudrak93@gmail.com>"]
+categories = ["command-line-utilities"]
+description = "Calculator using Roman numerical system."
+documentation = "https://www.smallskill.org/docs/calc_new_roman/index.html"
+edition = "2021"
+homepage = "https://www.smallskill.org/calc-new-roman/"
+keywords = ["calculator", "roman"]
+license = "MIT"
+name = "calc_new_roman"
+readme = "README.md"
+repository = "https://github.com/lubosmudrak/calc_new_roman"
+version = "0.0.0"
+
+
+# keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
