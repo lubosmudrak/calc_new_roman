@@ -34,28 +34,35 @@ pub fn parse_user_input(user_input: String) -> Option<i16>
         ('M',0)
     ]);
 
-    //currently not enforcing all the rules
     let mut number_counter:i16 = 0;
     let input_chars: Vec<char> = user_input.to_uppercase().chars().collect();
 
     for i in 0..input_chars.len() {
         match input_chars[i]{
              'M'| 'V' | 'L' | 'D' => {
+                if i < input_chars.len()-1 {
+                    if roman_numeral_weigths[&input_chars[i]] < roman_numeral_weigths[&input_chars[i+1]] {
+                        return None
+                }
+            }
                 number_counter+=roman_numeral_weigths[&input_chars[i]];
                 *roman_numeral_count.entry(input_chars[i]).or_insert(0) +=1;
             },
             'I' | 'X' | 'C' => {
                 if i < input_chars.len()-1 {
                     if roman_numeral_weigths[&input_chars[i]] < roman_numeral_weigths[&input_chars[i+1]] {
+                        *roman_numeral_count.entry(input_chars[i]).or_insert(0) -=1;
                         number_counter-=roman_numeral_weigths[&input_chars[i]];
     
                         } else {
+                        *roman_numeral_count.entry(input_chars[i]).or_insert(0) +=1;
                         number_counter+=roman_numeral_weigths[&input_chars[i]];
                     }
                 } else {
                     number_counter+=roman_numeral_weigths[&input_chars[i]];
+                    *roman_numeral_count.entry(input_chars[i]).or_insert(0) +=1;
                 }
-                *roman_numeral_count.entry(input_chars[i]).or_insert(0) +=1;
+                
             }
             _ => (number_counter+=0)
         }
