@@ -11,7 +11,7 @@ pub fn get_user_input() -> String
 }
 
 /// Extract roman numbers from string and convert them into arabic
-pub fn parse_user_input(user_input: String) -> Option<i16>
+pub fn parse_user_input( user_input: String) -> Option<i16>
 {
     let roman_numeral_weigths = std::collections::HashMap::from([
         ('I',1),
@@ -35,7 +35,17 @@ pub fn parse_user_input(user_input: String) -> Option<i16>
     ]);
 
     let mut number_counter:i16 = 0;
-    let input_chars: Vec<char> = user_input.to_uppercase().chars().collect();
+    let input_chars_raw: Vec<char> = user_input.to_uppercase().chars().collect();
+    let mut input_chars= Vec::new();
+    
+    
+    for i in 0..input_chars_raw.len(){
+        match input_chars_raw[i]{
+            'I'|'V'|'X'| 'L'|'C'|'D'|'M' => {input_chars.push(input_chars_raw[i]);},
+            _ => {return None}
+        }
+    }
+    println!("input_chars: {:?}", input_chars);
 
     for i in 0..input_chars.len() {
         match input_chars[i]{
