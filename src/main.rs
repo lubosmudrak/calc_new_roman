@@ -4,7 +4,7 @@ mod parsing;
 
 fn main() {
     let mut exit_command = false;
-    let mut result:std::option::Option<u16> = None;
+    let mut result:std::option::Option<i16> = None;
     println!("Wellcome to Calc New Roman!\nType exit to quit this application.");
 
     while exit_command == false{
