@@ -11,7 +11,7 @@ pub fn get_user_input() -> String
 }
 
 /// Extract roman numbers from string and convert them into arabic
-pub fn parse_user_input( user_input: String) -> Option<i16>
+pub fn parse_user_input( user_input: &String) -> Option<i16>
 {
     let roman_numeral_weigths = std::collections::HashMap::from([
         ('I',1),
@@ -45,7 +45,6 @@ pub fn parse_user_input( user_input: String) -> Option<i16>
             _ => {return None}
         }
     }
-    println!("input_chars: {:?}", input_chars);
 
     for i in 0..input_chars.len() {
         match input_chars[i]{
@@ -98,90 +97,90 @@ pub fn parse_user_input( user_input: String) -> Option<i16>
 
 #[test]
 fn parse_i(){
-    assert_eq!(parse_user_input("I".to_string()), Some(1));
+    assert_eq!(parse_user_input(&"I".to_string()), Some(1));
 }
 
 #[test]
 fn parse_ii(){
-    assert_eq!(parse_user_input("II".to_string()), Some(2));
+    assert_eq!(parse_user_input(&"II".to_string()), Some(2));
 }
 
 #[test]
 fn parse_iiii(){
-    assert_eq!(parse_user_input("IIII".to_string()), Option::None);
+    assert_eq!(parse_user_input(&"IIII".to_string()), Option::None);
 }
 
 #[test]
 fn parse_iv(){
-    assert_eq!(parse_user_input("IV".to_string()),Some(4));
+    assert_eq!(parse_user_input(&"IV".to_string()),Some(4));
 }
 
 #[test]
 fn parse_v(){
-    assert_eq!(parse_user_input("V".to_string()), Some(5));
+    assert_eq!(parse_user_input(&"V".to_string()), Some(5));
 }
 
 #[test]
 fn parse_x(){
-    assert_eq!(parse_user_input("X".to_string()), Some(10));
+    assert_eq!(parse_user_input(&"X".to_string()), Some(10));
 }
 
 #[test]
 fn parse_lxiii(){
-    assert_eq!(parse_user_input("LXIII".to_string()), Some(63));
+    assert_eq!(parse_user_input(&"LXIII".to_string()), Some(63));
 }
 
 #[test]
 fn parse_lxiv(){
-    assert_eq!(parse_user_input("LXIV".to_string()), Some(64));
+    assert_eq!(parse_user_input(&"LXIV".to_string()), Some(64));
 }
 
 #[test]
 fn parse_xxxx(){
-    assert_eq!(parse_user_input("XXXX".to_string()), Option::None);
+    assert_eq!(parse_user_input(&"XXXX".to_string()), Option::None);
 }
 
 #[test]
 fn parse_xxxxi(){
-    assert_eq!(parse_user_input("XXXXI".to_string()), Option::None);
+    assert_eq!(parse_user_input(&"XXXXI".to_string()), Option::None);
 }
 
 #[test]
 fn parse_xxll(){
-    assert_eq!(parse_user_input("XXLL".to_string()), Option::None);
+    assert_eq!(parse_user_input(&"XXLL".to_string()), Option::None);
 }
 
 #[test]
 fn parse_llc(){
-    assert_eq!(parse_user_input("LLC".to_string()), Option::None);
+    assert_eq!(parse_user_input(&"LLC".to_string()), Option::None);
 }
 
 #[test]
 fn parse_lc(){
-    assert_eq!(parse_user_input("LC".to_string()), Option::None);
+    assert_eq!(parse_user_input(&"LC".to_string()), Option::None);
 }
 
 #[test]
 fn parse_ilc(){
-    assert_eq!(parse_user_input("ILC".to_string()), Option::None);
+    assert_eq!(parse_user_input(&"ILC".to_string()), Option::None);
 }
 
 #[test]
 fn parse_mmmx(){
-    assert_eq!(parse_user_input("MMMX".to_string()), Some(3010));
+    assert_eq!(parse_user_input(&"MMMX".to_string()), Some(3010));
 }
 
 #[test]
 fn parse_mmmcmxcix(){
-    assert_eq!(parse_user_input("MMMCMXCIX".to_string()), Some(3999));
+    assert_eq!(parse_user_input(&"MMMCMXCIX".to_string()), Some(3999));
 }
 
 #[test]
 fn parse_lxxxix(){
-    assert_eq!(parse_user_input("LXXXIX".to_string()), Some(89));
+    assert_eq!(parse_user_input(&"LXXXIX".to_string()), Some(89));
 }
 
 #[test]
 fn parse_lxxxiv(){
-    assert_eq!(parse_user_input("LXXXIV".to_string()), Some(84));
+    assert_eq!(parse_user_input(&"LXXXIV".to_string()), Some(84));
 }
