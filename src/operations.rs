@@ -1,9 +1,78 @@
-
+use super::parsing;
 
 ///Perform mathematical operations with user's input and return the result
 pub fn calculate(user_input: &String) -> Option<i16>
 {
-    Some(0)
+    let input_chars_raw: Vec<char> = user_input.to_uppercase().chars().collect();
+    let mut input_chars= Vec::new();
+    let mut result_collector = 0;
+    let mut roman_numeral_collector = String::new();
+    let mut operator = '0';
+    
+    if input_chars_raw[input_chars_raw.len()-1] != '='{
+        println!("Warning: incomplete mathematical operation!\nHint: you may be missing \"=\".");
+        return None
+    }
+    
+    for i in 0..input_chars_raw.len(){
+        match input_chars_raw[i]{
+            'I'|'V'|'X'| 'L'|'C'|'D'|'M'|'+'|'-'|'/'|'*'|'÷'|'=' => {input_chars.push(input_chars_raw[i]);},
+            _ => {return None}
+        }
+    }
+
+    for i in 0..input_chars.len()
+    {
+        match input_chars[i]{
+            '+'|'-'|'/'|'*'|'÷'|'=' => {
+                if operator == '0'{
+                    match parsing::parse_user_input(&roman_numeral_collector.to_string()){
+                        Some(x) => {
+                            result_collector = result_collector+x;
+                            operator = input_chars[i];
+                            roman_numeral_collector.clear();
+                        }
+                        None => {println!("input error!");}
+                    }
+                } else {
+                    match operator{
+                        '+' => {
+                            match parsing::parse_user_input(&roman_numeral_collector.to_string()){
+                                Some(x) => {result_collector = result_collector+x;}
+                                None => {println!("input error!");}
+                            }
+                        }
+                        '-' => {                            
+                            match parsing::parse_user_input(&roman_numeral_collector.to_string()){
+                                Some(x) => {result_collector = result_collector-x;}
+                                None => {println!("input error!");}
+                            }
+                        }
+                        '*' => {                            
+                            match parsing::parse_user_input(&roman_numeral_collector.to_string()){
+                                Some(x) => {result_collector = result_collector*x;}
+                                None => {println!("input error!");}
+                                }
+                            }
+                        '÷' | '/'=> {
+                            match parsing::parse_user_input(&roman_numeral_collector.to_string()){
+                                Some(x) => {result_collector = result_collector/x;}
+                                None => {println!("input error!");}
+                                }
+                        }
+                        '=' => {Some(result_collector);}
+                        _ => {Some(result_collector);}
+                    }
+                    operator = input_chars[i];
+                    roman_numeral_collector.clear();
+                }
+            }
+
+            _ => {roman_numeral_collector.push(input_chars[i])}
+        }
+    }
+
+    Some(result_collector)
 }
 
 #[test]

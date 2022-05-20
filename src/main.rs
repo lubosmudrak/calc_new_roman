@@ -1,4 +1,5 @@
 mod parsing;
+mod operations;
 
 fn main() {
     let mut exit_command = false;
@@ -6,7 +7,7 @@ fn main() {
 
     while exit_command == false{
         let user_input = parsing::get_user_input();
-        let result = parsing::parse_user_input(&user_input);
+        let result = operations::calculate(&user_input);
         match result{
             Some(x) => println!("Result: {}",x),
             None => {
