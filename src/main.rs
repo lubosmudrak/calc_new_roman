@@ -16,7 +16,7 @@ fn main() {
                         exit_command = true;
                         println!("Thank you for using Calc New Roman!");
                     },
-                    "help" => (println!("TODO: documentation...\n")),
+                    "help" => {operations::print_documentation();},
                     _ => (println!("ERROR: invalid input!"))
                 }
             }
