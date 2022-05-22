@@ -35,17 +35,8 @@ pub fn parse_user_input( user_input: &String) -> Option<i16>
     ]);
 
     let mut number_counter:i16 = 0;
-    let input_chars_raw: Vec<char> = user_input.to_uppercase().chars().collect();
-    let mut input_chars= Vec::new();
+    let input_chars: Vec<char> = user_input.to_uppercase().chars().collect();
     
-    //TODO: move into operations.rs
-    for i in 0..input_chars_raw.len(){
-        match input_chars_raw[i]{
-            'I'|'V'|'X'| 'L'|'C'|'D'|'M' => {input_chars.push(input_chars_raw[i]);},
-            _ => {return None}
-        }
-    }
-
     for i in 0..input_chars.len() {
         match input_chars[i]{
              'M'| 'V' | 'L' | 'D' => {
