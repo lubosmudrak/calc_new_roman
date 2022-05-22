@@ -9,9 +9,9 @@ Compiling
 - download and install Git from https://git-scm.com/
 - download and install Rust programming language at https://www.rust-lang.org/tools/install
 - clone this repository into your machine by using the following command in your console: 
-        git clone https://github.com/lubosmudrak/calc_new_roman.git
+`git clone https://github.com/lubosmudrak/calc_new_roman.git`
 - compile and run Calc New roman by using this command in your console while you are in app's root directory:
-        cargo run
+`cargo run`
 
 
 Usage
