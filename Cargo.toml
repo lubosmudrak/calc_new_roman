@@ -10,7 +10,7 @@ license = "MIT"
 name = "calc_new_roman"
 readme = "README.md"
 repository = "https://github.com/lubosmudrak/calc_new_roman"
-version = "0.0.0"
+version = "0.1.0"
 
 
 # keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
