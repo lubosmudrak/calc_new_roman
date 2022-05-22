@@ -8,17 +8,21 @@ pub fn calculate(user_input: &String) -> Option<i16>
     let mut result_collector = 0;
     let mut roman_numeral_collector = String::new();
     let mut operator = '0';
-    
-    if input_chars_raw[input_chars_raw.len()-1] != '='{
-        println!("Warning: incomplete mathematical operation!\nHint: you may be missing \"=\".");
-        return None
-    }
-    
+       
     for i in 0..input_chars_raw.len(){
         match input_chars_raw[i]{
             'I'|'V'|'X'| 'L'|'C'|'D'|'M'|'+'|'-'|'/'|'*'|'÷'|'=' => {input_chars.push(input_chars_raw[i]);},
             _ => {return None}
         }
+    }
+
+    if input_chars[input_chars.len()-1] != '='{
+        match input_chars[input_chars.len()-1]{
+            '+'|'-'|'/'|'*'|'÷' => {println!("Warning: incomplete mathematical operation!\nHint: You are missing a number on which you want to perform a mathematical operation.")}
+            'I'|'V'|'X'| 'L'|'C'|'D'|'M' => {println!("Warning: incomplete mathematical operation!\nHint: You are missing an operation to perform on a roman number.")}
+            _ => {println!("Warning: incomplete mathematical operation!\nHint: you may be missing \"=\"")}
+        }
+        return None
     }
 
     for i in 0..input_chars.len()
@@ -60,7 +64,12 @@ pub fn calculate(user_input: &String) -> Option<i16>
                                 None => {println!("input error!");}
                                 }
                         }
-                        '=' => {Some(result_collector);}
+                        '=' => { if i < input_chars.len()-1{
+                            println!("Warning: \"=\" must be placed on the last place of your mathematical operation!");
+                            return None
+                            }
+                            Some(result_collector);
+                        }
                         _ => {Some(result_collector);}
                     }
                     operator = input_chars[i];
